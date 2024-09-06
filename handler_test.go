@@ -42,15 +42,11 @@ func TestEchoHandler(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 
 	// Check the response status code
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
-	}
+	assert.True(t, rr.Code == http.StatusOK)
 
 	// Check the response body
 	expected := "1,2,3\n4,5,6\n7,8,9\n"
-	if rr.Body.String() != expected {
-		t.Errorf("handler returned unexpected body: got %v want %v", rr.Body.String(), expected)
-	}
+	assert.Equal(t, expected, rr.Body.String())
 }
 
 func TestInvertHandler(t *testing.T) {
@@ -84,15 +80,11 @@ func TestInvertHandler(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 
 	// Check the response status code
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
-	}
+	assert.True(t, rr.Code == http.StatusOK)
 
 	// Check the response body
 	expected := "1,4,7\n2,5,8\n3,6,9\n"
-	if rr.Body.String() != expected {
-		t.Errorf("handler returned unexpected body: got %v want %v", rr.Body.String(), expected)
-	}
+	assert.Equal(t, expected, rr.Body.String())
 }
 
 func TestInvertHandlerIncompleteMatrix(t *testing.T) {
@@ -160,15 +152,10 @@ func TestFlattenHandler(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 
 	// Check the response status code
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
-	}
-
+	assert.True(t, rr.Code == http.StatusOK)
 	// Check the response body
 	expected := "1,2,3,4,5,6,7,8,9\n"
-	if rr.Body.String() != expected {
-		t.Errorf("handler returned unexpected body: got %v want %v", rr.Body.String(), expected)
-	}
+	assert.Equal(t, expected, rr.Body.String())
 }
 
 func TestFlattenHandlerIncompleteMatrix(t *testing.T) {
@@ -236,9 +223,7 @@ func TestSumHandler(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 
 	// Check the response status code
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
-	}
+	assert.True(t, rr.Code == http.StatusOK)
 
 	// Check the response body
 	expected := "45\n"
@@ -276,9 +261,7 @@ func TestMultiplyHandler(t *testing.T) {
 	handler.ServeHTTP(rr, req)
 
 	// Check the response status code
-	if status := rr.Code; status != http.StatusOK {
-		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
-	}
+	assert.True(t, rr.Code == http.StatusOK)
 
 	// Check the response body
 	expected := "362880\n"
