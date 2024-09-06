@@ -10,6 +10,7 @@ import (
 	"strings"
 )
 
+// echoHandler echos back the contents of the file
 func echoHandler(w http.ResponseWriter, r *http.Request) {
 	file, _, err := r.FormFile("file")
 	if err != nil {
@@ -35,6 +36,7 @@ func echoHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, response)
 }
 
+// invertHandler inverts the matrix
 func invertHandler(w http.ResponseWriter, r *http.Request) {
 	file, _, err := r.FormFile("file")
 	if err != nil {
@@ -103,6 +105,7 @@ func invertHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// flattenHandler flattens the matrix
 func flattenHandler(w http.ResponseWriter, r *http.Request) {
 	file, _, err := r.FormFile("file")
 	if err != nil {
@@ -162,6 +165,7 @@ func flattenHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// sumHandler sums the elements of thematrix
 func sumHandler(w http.ResponseWriter, r *http.Request) {
 	file, _, err := r.FormFile("file")
 	if err != nil {
@@ -224,6 +228,7 @@ func sumHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, totalSum)
 }
 
+// multiplyHandler multiplies the elements of the matrix
 func multiplyHandler(w http.ResponseWriter, r *http.Request) {
 	file, _, err := r.FormFile("file")
 	if err != nil {
@@ -295,6 +300,7 @@ func multiplyHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// matrixToString converts a matrix to a string
 func matrixToString(matrix [][]string) string {
 	var result string
 	for _, row := range matrix {
@@ -303,6 +309,7 @@ func matrixToString(matrix [][]string) string {
 	return result
 }
 
+// sumRow sums a row of the matrix
 func sumRow(row []string) (*big.Int, error) {
 	sum := big.NewInt(0)
 	for _, value := range row {
@@ -317,6 +324,7 @@ func sumRow(row []string) (*big.Int, error) {
 	return sum, nil
 }
 
+// multiplyRow multiplies a row of the matrix
 func multiplyRow(row []string) (*big.Int, error) {
 	product := big.NewInt(1)
 	for _, value := range row {
