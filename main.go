@@ -6,17 +6,14 @@ import (
 	"net/http"
 )
 
-// Run with
-//		go run .
-// Send request with:
-//		curl -F 'file=@/path/matrix.csv' "localhost:8080/echo"
-
 const (
 	ip   = "127.0.0.1" // should be empty for prod deploys
 	port = "8080"
 )
 
+// main is the entrypoint for the server
 func main() {
+	// Register handlers
 	http.HandleFunc("/echo", echoHandler)
 	http.HandleFunc("/invert", invertHandler)
 	http.HandleFunc("/flatten", flattenHandler)
